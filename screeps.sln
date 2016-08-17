@@ -15,9 +15,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		role.builder.js = role.builder.js
 		role.builder2.js = role.builder2.js
 		role.harvester.js = role.harvester.js
+		role.towerRun.js = role.towerRun.js
 		role.upgrader.js = role.upgrader.js
 		tower.js = tower.js
-		towerRun.js = towerRun.js
 	EndProjectSection
 EndProject
 Global
