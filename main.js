@@ -6,18 +6,21 @@ var roleTowerRun = require('role.towerRun');
 var roleDefend1 = require('role.defend1');
 var roleTower = require('role.tower');
 var clearDead = require('clearDead');
-var resp = require('resp');
+var respawn = require('respawn');
 
 module.exports.loop = function () {
 
-    resp.run();
-    clearDead.run();
+
+
     //if enemy creep - enable defense
     var bDefense = false;
     var targets = Game.spawns["Spawn1"].room.find(FIND_HOSTILE_CREEPS)
     if (targets.length > 0) {
         bDefense = true;
     }
+
+
+    //tower needs to be automated
     var tower = Game.getObjectById('57b34a9ac71cc8133030ba50');
     if (tower.energy > 0) {
 
@@ -32,35 +35,51 @@ module.exports.loop = function () {
     }
 
 
+    //loop creeps
+    var current_creeps = {
+        harvester: 0, defense: 0, upgrader: 0, builder: 0, builder2: 0,
+        towerRun: 0, ling: 0, ultra: 0
+    };
+
+
     for (var name in Game.creeps) {
 
         //count of roles while assigning jobs
         var creep = Game.creeps[name];
         if (creep.memory.role == 'harvester') {
             roleHarvester.run(creep);
+            current_creeps.harvester++
         }
         if (bDefense) {
-            if (creep.memory.role == 'defend1') {
-                roleDefend1.run(creep);
+            if (creep.memory.role == 'ling') {
+                roleDefend1.taskOne(creep);
+                current_creeps.ling++
+            }
+            if (creep.memory.role == 'ultra') {
+                roleDefend1.taskOne(creep);
+                current_creeps.ultra++
             }
         }
         if (creep.memory.role == 'upgrader') {
             roleUpgrader.run(creep);
+            current_creeps.upgrader++
         }
         if (creep.memory.role == 'builder') {
             roleBuilder.run(creep);
+            current_creeps.builder++
         }
         if (creep.memory.role == 'builder2') {
             roleBuilder2.run(creep);
+            current_creeps.builder2++
         }
         if (creep.memory.role == 'towerRun') {
             roleTowerRun.run(creep);
+            current_creeps.towerRun++
         }
-        if (creep.memory.role == 'ling') {
-            roleDefend1.taskOne(creep);
-        }
-        if (creep.memory.role == 'ultra') {
-            roleDefend1.taskOne(creep);
-        }
+
     }
+
+    respawn.run(current_creeps);
+
+
 }

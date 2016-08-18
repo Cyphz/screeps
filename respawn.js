@@ -7,14 +7,14 @@ var bWait = false
 var bSpawning = false
 
 var respawn = {   
-    run: function(role, count)
+    run: function(current_creeps)
     {
         bWait = false;
         //console.log("----Respawner -----" )
-        _.forEach(Memory.roles, function(value, key)
+        _.forEach( Memory.roles, function(value, key)
         {   
-            if
-                if(key == "max")
+            
+            if(key == "max")
             {
                 maxValue = value
             }
@@ -23,17 +23,18 @@ var respawn = {
                 energyValue = value
             }
         })
-        //console.log(key + " - " + filterList.length + " of " + maxValue + " -- Energy: " + energyValue )
-        if(filterList.length < maxValue && bWait == false )
+
+        var count = current_creeps[Memory.roles];
+        if(count < maxValue && bWait == false )
         {   
-            console.log(key + " - " + filterList.length + " of " + maxValue + " -- Energy: " + energyValue )
-            console.log("Need a: " + key)
+            console.log(Memory.roles + " - " + count + " of " + maxValue + " -- Energy: " + energyValue )
+            //console.log("Need a: " + Memory.roles)
             console.log("Room Energy: " + Game.spawns['Spawn1'].room.energyAvailable + " of " + Game.spawns['Spawn1'].room.energyCapacityAvailable)
             if(Game.spawns['Spawn1'].room.energyAvailable   >= energyValue)
             { 
                 //spawn
-                helpers.createOne(key)
-                console.log("Spawning " + key)
+                helpers.createOne(Memory.roles)
+                console.log("Spawning " + Memory.roles)
                  
                 clearDead.run()
                 bWait = true
