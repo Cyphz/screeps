@@ -1,4 +1,4 @@
-﻿var helpers = {
+var helpers = {
 
     worker200: function (names) {
         Game.spawns["Spawn1"].createCreep([WORK, CARRY, MOVE], undefined, { role: names })// w-100 c-50 m-50 = 200

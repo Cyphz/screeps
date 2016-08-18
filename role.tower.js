@@ -1,4 +1,4 @@
-﻿var roleTower = {
+var roleTower = {
 
     /** @param {Creep} creep **/
     defend: function (tower) {
