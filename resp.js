@@ -1,4 +1,4 @@
-﻿var clearDead = require('clearDead');
+var clearDead = require('clearDead');
 var helpers = require('helpers');
 var names = ""
 var maxValue = 0
