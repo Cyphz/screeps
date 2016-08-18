@@ -1,4 +1,4 @@
-﻿var clearDead = {
+var clearDead = {
     run: function () {
         for (var name in Memory.creeps) {
             if (!Game.creeps[name]) {

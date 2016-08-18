@@ -1,4 +1,4 @@
-﻿var roleDefend = {
+var roleDefend = {
 
     taskOne: function (creep) {
         var role = creep.memory.role;
