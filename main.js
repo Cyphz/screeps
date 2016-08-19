@@ -1,16 +1,17 @@
 var roleHarvester = require('role.harvester');
+var roleFiller = require('role.filler');
+var roleTaker = require('role.filler');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var roleBuilder2 = require('role.builder2');
 var roleTowerRun = require('role.towerRun');
 var roleDefend1 = require('role.defend1');
 var roleTower = require('role.tower');
-var clearDead = require('clearDead');
 var respawn = require('respawn');
 
 module.exports.loop = function () {
 
-    //if enemy creep - enable defense
+    //if enemy creep - enable defenses
     var bDefense = false;
     var targets = Game.spawns["Spawn1"].room.find(FIND_HOSTILE_CREEPS)
     if (targets.length > 0) {
@@ -31,7 +32,7 @@ module.exports.loop = function () {
 
     //loop creeps
     var current_creeps = {
-        harvester: 0, defense: 0, upgrader: 0, builder: 0, builder2: 0,
+        harvester: 0, filler: 0, taker: 0, defense: 0, upgrader: 0, builder: 0, builder2: 0,
         towerRun: 0, ling: 0, ultra: 0
     };
 
@@ -39,11 +40,24 @@ module.exports.loop = function () {
 
         //count of roles while assigning jobs
         var creep = Game.creeps[name];
-        if (creep.memory.role == 'harvester') {
-            roleHarvester.run(creep);
-            current_creeps.harvester++
+        //if (creep.memory.role == 'harvester') {
+        //    roleHarvester.run(creep);
+        //    current_creeps.harvester++
+        //}
+        if (creep.memory.role == 'harvester')
+        {
+            creep.memory.role = 'taker'
+
         }
 
+        if (creep.memory.role == 'filler') {
+            roleFiller.run(creep);
+            current_creeps.filler++
+        }
+        if (creep.memory.role == 'taker') {
+            roleTaker.run(creep);
+            current_creeps.taker++
+        }
         if (creep.memory.role == 'ling') {
             if (bDefense) {
                 roleDefend1.taskOne(creep);

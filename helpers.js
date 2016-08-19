@@ -18,6 +18,9 @@ var helpers = {
     worker800: function (names) {
         Game.spawns["Spawn1"].createCreep([WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE], undefined, { role: names }) //w-400 c-200 m-200 = 800
     },
+    filler700: function (names) {
+        Game.spawns["Spawn1"].createCreep([WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE], undefined, { role: names }) //w-500 c-100 m-100 = 700
+    },
 
     ultra500: function (names) { //tank
         Game.spawns["Spawn1"].createCreep([ATTACK, MOVE, MOVE, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH], undefined, { role: names })
@@ -30,6 +33,9 @@ var helpers = {
         switch (names) {
             case "harvester":
                 this.worker600(names)
+                break;
+            case "filler":
+                this.filler700(names)
                 break;
             case "upgrader":
                 this.worker600(names)
