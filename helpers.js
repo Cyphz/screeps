@@ -21,6 +21,9 @@ var helpers = {
     filler700: function (names) {
         Game.spawns["Spawn1"].createCreep([WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE], undefined, { role: names }) //w-500 c-100 m-100 = 700
     },
+    filler950: function (names) {
+        Game.spawns["Spawn1"].createCreep([WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE], undefined, { role: names }) //w-600 c-300 m-50 = 950
+    },
     taker450: function (names) {
         Game.spawns["Spawn1"].createCreep([CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE], undefined, { role: names }) // c-300 m-150 = 450
     },
@@ -38,7 +41,7 @@ var helpers = {
                 this.worker600(names)
                 break;
             case "filler":
-                this.filler700(names)
+                this.filler950(names)
                 break;
             case "taker":
                 this.taker450(names)
