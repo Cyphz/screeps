@@ -16,7 +16,7 @@ var roleTower = {
             });
             if (closestDamagedStructure) {
                 tower.repair(closestDamagedStructure);
-                console.log('1000')
+                console.log('1000' + closestDamagedStructure)
             }
             else {
                 var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
