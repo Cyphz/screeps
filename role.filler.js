@@ -10,22 +10,23 @@ var roleFiller = {
             if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(sources);
             }
-            else {
-                var container = creep.pos.findClosestByRange(FIND_STRUCTURES, {
-                    filter: (structure) => {
-                        return ((structure.structureType == STRUCTURE_STORAGE ||
-                                structure.structureType == STRUCTURE_CONTAINER) &&
-                          energy < energyCapacity && mine);
-                    }
-                });
+        }
+        else {
+            var container = creep.pos.findClosestByRange(FIND_STRUCTURES, {
+                filter: (structure) => {
+                    return ((structure.structureType == STRUCTURE_STORAGE ||
+                            structure.structureType == STRUCTURE_CONTAINER) 
+                        )
+                }
+            });
 
-                if (container) {
-                    if (creep.transfer(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(container);
-                    }
+            if (container) {
+                if (creep.transfer(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(container);
                 }
             }
         }
+        
     }
 }
 module.exports = roleFiller;
