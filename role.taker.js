@@ -35,7 +35,7 @@ var roleTaker = {
                   structure.structureType == STRUCTURE_SPAWN) &&
             energy < energyCapacity && mine;
                     }
-                console.log(tower)
+               
                 if (tower) {
                     if (creep.transfer(tower, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(tower);
