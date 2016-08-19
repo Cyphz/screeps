@@ -16,7 +16,7 @@ var roleTaker = {
             var tower = creep.pos.findClosestByRange(FIND_STRUCTURES, {
                 filter: (structure) => {
                     return ((structure.structureType == STRUCTURE_TOWER ||
-                            (structure.structureType == STRUCTURE_CONTAINER)) && 
+                            (structure.structureType == STRUCTURE_CONTAINER)) &&
                             structure.energy < structure.energyCapacity &&
                             structure.my);
                 }
@@ -26,7 +26,7 @@ var roleTaker = {
                 creep.moveTo(tower);
             }
         }
-           
+    }
 };
 
 module.exports = roleTaker;
