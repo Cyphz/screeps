@@ -35,44 +35,29 @@ var roleTaker = {
                         && structure.energy < structure.energyCapacity)
                     }
                 });
-
                 if (tower) {
                     if (creep.transfer(tower, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(tower);
                     }
                 }
-
-
             }
         }
-
         else {
-            var container = creep.pos.findInRange(FIND_DROPPED_ENERGY, 1);
+            //take from container
+
+            var container = creep.pos.findClosestByRange(FIND_STRUCTURES, {
+                filter: (structure) => {
+                    return (structure.structureType == STRUCTURE_STORAGE)
+
+                }
+            });
+
             if (container) {
-                console.log('dropperd')
-                if (creep.transfer(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                if (creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(container);
                 }
             }
-            else {
-                //take from container
-
-                var container = creep.pos.findClosestByRange(FIND_STRUCTURES, {
-                    filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_STORAGE)
-
-                    }
-                });
-
-                if (container) {
-                    if (creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(container);
-                    }
-
-                }
-            }
-
         }
     }
 }
- module.exports = roleTaker;
+module.exports = roleTaker;

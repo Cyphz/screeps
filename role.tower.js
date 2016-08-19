@@ -23,7 +23,7 @@ var roleTower = {
             });
             if (closestDamagedStructure) {
                 tower.repair(closestDamagedStructure);
-                console.log('1000' + closestDamagedStructure)
+
             }
             else {
                 var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
@@ -36,7 +36,6 @@ var roleTower = {
                 });
                 if (closestDamagedStructure) {
                     tower.repair(closestDamagedStructure);
-                    console.log('5000')
                 }
                 else {
                     var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
@@ -49,7 +48,6 @@ var roleTower = {
                     });
                     if (closestDamagedStructure) {
                         tower.repair(closestDamagedStructure);
-                        console.log('10000')
                     }
                     else {
                         var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
@@ -62,7 +60,6 @@ var roleTower = {
                         });
                         if (closestDamagedStructure) {
                             tower.repair(closestDamagedStructure);
-                            console.log('500000')
                         }
                         else {
                             var closestDamagedStructure = tower.room.find(FIND_STRUCTURES, {
@@ -70,7 +67,6 @@ var roleTower = {
                             });
                             if (closestDamagedStructure) {
                                 tower.repair(closestDamagedStructure);
-                                console.log('open')
                             }
                         }
                     }
