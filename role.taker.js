@@ -1,7 +1,8 @@
 var roleTaker = {
 
-    ///** @param {Creep} creep **/
-    //run: function (creep) {
+    /** @param {Creep} creep **/
+    run: function (creep) {
+    }
 
     //    if (creep.memory.taking && creep.carry.energy == 0) {
     //        creep.memory.taking = false;
