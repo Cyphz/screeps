@@ -11,8 +11,15 @@ var roleTower = {
     },
     rep: function (tower) {
         if (tower) {
-            var closestDamagedStructure = tower.room.find(FIND_STRUCTURES, {
-                filter: (structure) => ((structure.hits < 1000) && structure.hits < structure.hitsMax)
+            var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
+                filter: (structure) => {
+                    return (((structure.structureType == STRUCTURE_RAMPARTS) ||
+                        (structure.structureType == STRUCTURE_WALLS) ||
+                         (structure.structureType == STRUCTURE_ROADS))
+                        && (structure.energy < 1000 && structure.energy < structure.energyCapacity))
+                }
+
+
             });
             if (closestDamagedStructure) {
                 tower.repair(closestDamagedStructure);
