@@ -4,7 +4,7 @@ var roleTower = {
     defend: function (tower) {
         var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
         if (closestHostile) {
-            tower.attack(closestHostile[0]);
+            tower.attack(closestHostile);
         }
     },
     rep: function (tower) {
