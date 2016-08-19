@@ -40,15 +40,11 @@ module.exports.loop = function () {
 
         //count of roles while assigning jobs
         var creep = Game.creeps[name];
-        //if (creep.memory.role == 'harvester') {
-        //    roleHarvester.run(creep);
-        //    current_creeps.harvester++
-        //}
-        if (creep.memory.role == 'harvester')
-        {
-            creep.memory.role = 'taker'
-
+        if (creep.memory.role == 'harvester') {
+            roleHarvester.run(creep);
+            current_creeps.harvester++
         }
+
 
         if (creep.memory.role == 'filler') {
             roleFiller.run(creep);

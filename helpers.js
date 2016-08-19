@@ -37,6 +37,9 @@ var helpers = {
             case "filler":
                 this.filler700(names)
                 break;
+            case "helper":
+                this.filler700(names)
+                break;
             case "upgrader":
                 this.worker600(names)
                 break;
