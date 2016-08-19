@@ -47,7 +47,7 @@ var helpers = {
                 this.worker200(names)
                 break;
             case "filler":
-                this.filler250(names)
+                this.filler950(names)
                 break;
             case "taker":
                 this.taker150(names)
