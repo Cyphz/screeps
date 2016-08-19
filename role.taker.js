@@ -47,10 +47,11 @@ var roleTaker = {
         }
 
         else {
-            var needs = creep.pos.findInRange(FIND_DROPPED_ENERGY, 1);
-            if (needs) {
-                if (creep.transfer(needs, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(needs);
+            var container = creep.pos.findInRange(FIND_DROPPED_ENERGY, 1);
+            if (container) {
+                console.log('dropperd')
+                if (creep.transfer(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(container);
                 }
             }
             else {
