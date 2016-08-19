@@ -2,7 +2,7 @@ var roleTower = {
 
     /** @param {Creep} creep **/
     defend: function (tower) {
-        var tower = Game.getObjectById('57b34a9ac71cc8133030ba50');
+
         var tower = Game.getObjectById('57b34a9ac71cc8133030ba50');
         var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
         if (closestHostile) {

@@ -2,7 +2,7 @@ var roleTaker = {
 
     /** @param {Creep} creep **/
     run: function (creep) {
-    
+    }
 
         if (creep.memory.taking && creep.carry.energy == 0) {
             creep.memory.taking = false;
@@ -31,12 +31,12 @@ var roleTaker = {
             else {
                 tower = creep.pos.findClosestByRange(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_EXTENSION ||
-                  structure.structureType == STRUCTURE_CONTAINER ||
-                  structure.structureType == STRUCTURE_SPAWN) &&
-            energy < energyCapacity && mine;
+                        return (((structure.structureType == STRUCTURE_SPAWN) ||
+                        (structure.structureType == STRUCTURE_EXTENSION) ||
+                            (structure.structureType == STRUCTURE_CONTAINER))
+                        && structure.energy < structure.energyCapacity)
                     }
-                });
+                })
                
                 if (tower) {
                     if (creep.transfer(tower, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
