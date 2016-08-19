@@ -12,10 +12,11 @@ var roleTower = {
     rep: function (tower) {
         if (tower) {
             var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
-                filter: (structure) => structure.hits < 1000
+                filter: (structure) => (structure.hits < 1000)
             });
             if (closestDamagedStructure) {
                 tower.repair(closestDamagedStructure);
+                console.log('1000')
             }
             else {
                 var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
@@ -23,6 +24,7 @@ var roleTower = {
                 });
                 if (closestDamagedStructure) {
                     tower.repair(closestDamagedStructure);
+                    console.log('5000')
                 }
                 else {
                     var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
@@ -30,6 +32,7 @@ var roleTower = {
                     });
                     if (closestDamagedStructure) {
                         tower.repair(closestDamagedStructure);
+                        console.log('10000')
                     }
 
                     else {
@@ -38,6 +41,7 @@ var roleTower = {
                         });
                         if (closestDamagedStructure) {
                             tower.repair(closestDamagedStructure);
+                            console.log('500000')
                         }
                         else
                         {
@@ -46,7 +50,7 @@ var roleTower = {
                             });
                             if (closestDamagedStructure) {
                                 tower.repair(closestDamagedStructure);
-                            }
+                                console.log('open')
                         }
                     }
                 }
