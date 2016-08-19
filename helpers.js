@@ -21,6 +21,9 @@ var helpers = {
     filler700: function (names) {
         Game.spawns["Spawn1"].createCreep([WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE], undefined, { role: names }) //w-500 c-100 m-100 = 700
     },
+    taker450: function (names) {
+        Game.spawns["Spawn1"].createCreep([CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE], undefined, { role: names }) // c-300 m-150 = 450
+    },
 
     ultra500: function (names) { //tank
         Game.spawns["Spawn1"].createCreep([ATTACK, MOVE, MOVE, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH], undefined, { role: names })
@@ -37,8 +40,8 @@ var helpers = {
             case "filler":
                 this.filler700(names)
                 break;
-            case "helper":
-                this.filler700(names)
+            case "taker":
+                this.taker450(names)
                 break;
             case "upgrader":
                 this.worker600(names)

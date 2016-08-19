@@ -8,22 +8,52 @@ var roleTaker = {
             creep.say('taking');
         }
         if (!creep.memory.upgrading && creep.carry.energy == creep.carryCapacity) {
-            creep.memory.upgrading = true;
+            creep.memory.taking = true;
             creep.say('transfering');
         }
 
-        if (creep.memory.upgrading) {
-            var tower = creep.pos.findClosestByRange(FIND_STRUCTURES, {
+        if (creep.memory.taking) {
+            var storage = creep.pos.findClosestByRange(FIND_STRUCTURES, {
                 filter: (structure) => {
-                    return ((structure.structureType == STRUCTURE_TOWER ||
-                            (structure.structureType == STRUCTURE_CONTAINER)) &&
-                            structure.energy < structure.energyCapacity &&
-                            structure.my);
+                    return ((structure.structureType == STRUCTURE_STORAGE))
+
                 }
             });
 
-            if (creep.transfer(tower, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(tower);
+            if (creep.transfer(storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(storage);
+            }
+        }
+        else {
+            var 
+               needed = creep.pos.findClosestByRange(FIND_STRUCTURES, {
+                filter: (structure) => {
+                    return ((structure.structureType == STRUCTURE_EXTENSION ||
+                            structure.structureType == STRUCTURE_CONTAINER) &&
+                        structure.energy < structure.energyCapacity && structure.my)
+
+                }
+               });
+            if(needed > 0)
+            {
+                if (creep.transfer(needed, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(needed);
+                }
+
+            }
+            else {
+                tower = creep.pos.findClosestByRange(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return ((structure.structureType == STRUCTURE_TOWER) &&
+                            structure.energy < structure.energyCapacity && structure.my)
+                    }
+                });
+                if(tower > 0)
+                {
+                    if (creep.transfer(tower, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(tower);
+                    }
+                }
             }
         }
     }
