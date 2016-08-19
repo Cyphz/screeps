@@ -13,7 +13,7 @@ var roleTaker = {
         }
 
         if (creep.memory.taking) {
-
+                
             //true - go to places
             var needs = creep.pos.findClosestByRange(FIND_STRUCTURES, {
                 filter: (structure) => {

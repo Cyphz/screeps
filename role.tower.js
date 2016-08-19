@@ -55,18 +55,31 @@ var roleTower = {
                                 return (((structure.structureType == STRUCTURE_RAMPART) ||
                                     (structure.structureType == STRUCTURE_WALL) ||
                                      (structure.structureType == STRUCTURE_ROAD))
-                                    && (structure.hits < 500000 && structure.hits < structure.hitsMax))
+                                    && structure.hits < 100000 && structure.hits < structure.hitsMax)
                             }
                         });
                         if (closestDamagedStructure) {
                             tower.repair(closestDamagedStructure);
                         }
                         else {
-                            var closestDamagedStructure = tower.room.find(FIND_STRUCTURES, {
-                                filter: (structure) => structure.hits < structure.hitsMax
+                            var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
+                                filter: (structure) => {
+                                    return (((structure.structureType == STRUCTURE_RAMPART) ||
+                                        (structure.structureType == STRUCTURE_WALL) ||
+                                         (structure.structureType == STRUCTURE_ROAD))
+                                        && (structure.hits < 500000 && structure.hits < structure.hitsMax))
+                                }
                             });
                             if (closestDamagedStructure) {
                                 tower.repair(closestDamagedStructure);
+                            }
+                            else {
+                                var closestDamagedStructure = tower.room.find(FIND_STRUCTURES, {
+                                    filter: (structure) => structure.hits < structure.hitsMax
+                                });
+                                if (closestDamagedStructure) {
+                                    tower.repair(closestDamagedStructure);
+                                }
                             }
                         }
                     }
@@ -74,5 +87,4 @@ var roleTower = {
             }
         }
     }
-}
 module.exports = roleTower;
