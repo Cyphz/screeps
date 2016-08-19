@@ -3,7 +3,7 @@ var roleTower = {
     /** @param {Creep} creep **/
     defend: function (tower) {
         if (tower) {
-            var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+            var closestHostile = tower.room.find(FIND_HOSTILE_CREEPS);
             if (closestHostile) {
                 tower.attack(closestHostile);
             }
@@ -11,15 +11,15 @@ var roleTower = {
     },
     rep: function (tower) {
         if (tower) {
-            var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
-                filter: (structure) => (structure.hits < 1000)
+            var closestDamagedStructure = tower.room.find(FIND_STRUCTURES, {
+                filter: (structure) => (structure.hits < 1000) && (structure.type != STRUCTURE_CONTROLLER)
             });
             if (closestDamagedStructure) {
                 tower.repair(closestDamagedStructure);
                 console.log('1000' + closestDamagedStructure)
             }
             else {
-                var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
+                var closestDamagedStructure = tower.room.find(FIND_STRUCTURES, {
                     filter: (structure) => structure.hits < 5000
                 });
                 if (closestDamagedStructure) {
@@ -27,7 +27,7 @@ var roleTower = {
                     console.log('5000')
                 }
                 else {
-                    var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
+                    var closestDamagedStructure = tower.room.find(FIND_STRUCTURES, {
                         filter: (structure) => structure.hits < 10000
                     });
                     if (closestDamagedStructure) {
@@ -36,7 +36,7 @@ var roleTower = {
                     }
 
                     else {
-                        var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
+                        var closestDamagedStructure = tower.room.find(FIND_STRUCTURES, {
                             filter: (structure) => structure.hits < 500000
                         });
                         if (closestDamagedStructure) {
@@ -44,7 +44,7 @@ var roleTower = {
                             console.log('500000')
                         }
                         else {
-                            var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
+                            var closestDamagedStructure = tower.room.find(FIND_STRUCTURES, {
                                 filter: (structure) => structure.hits < structure.hitsMax
                             });
                             if (closestDamagedStructure) {
