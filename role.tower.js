@@ -19,7 +19,7 @@ var roleTower = {
                         structure.structureType == STRUCTURE_WALL ||
                          structure.structureType == STRUCTURE_ROAD)
                         && structure.hits < 1000 && structure.hits < structure.hitsMax)
-                
+                }
             });
             if (closestDamagedStructure) {
                 tower.repair(closestDamagedStructure);
