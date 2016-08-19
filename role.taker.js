@@ -1,5 +1,5 @@
 var roleTaker = {
- 
+
     /** @param {Creep} creep **/
     run: function (creep) {
 
@@ -13,7 +13,7 @@ var roleTaker = {
         }
 
         if (creep.memory.taking) {
-            //true
+            //true - go to places
             var needs = creep.pos.findClosestByRange(FIND_STRUCTURES, {
                 filter: (structure) => {
                     return (((structure.structureType == STRUCTURE_SPAWN) ||
@@ -26,22 +26,6 @@ var roleTaker = {
                 if (creep.transfer(needs, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(needs);
                 }
-            }
-        }
-        else {
-            //false
-            var  store = creep.pos.findClosestByRange(FIND_STRUCTURES, {
-                filter: (structure) => {
-                    return ((structure.structureType == STRUCTURE_STORAGE) &&
-                        structure.energy < 0 && structure.my)
-
-                }
-               });
-            if (store > 0) {
-                if (creep.transfer(store, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(store);
-                }
-
             }
             else {
                 tower = creep.pos.findClosestByRange(FIND_STRUCTURES, {
@@ -71,7 +55,24 @@ var roleTaker = {
                 }
             }
         }
-    }
-};
+        else {
+            //take from container
 
+            var container = creep.pos.findClosestByRange(FIND_STRUCTURES, {
+                filter: (structure) => {
+                    return (structure.structureType == STRUCTURE_STORAGE)
+
+                }
+            });
+
+            if (container) {
+                creep.say(true)
+                if (creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(container);
+                }
+
+            }
+        }
+    }
+}
 module.exports = roleTaker;
