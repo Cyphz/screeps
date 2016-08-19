@@ -45,7 +45,7 @@ var roleTaker = {
 
             }
         }
-    
+
         else {
             var needs = creep.pos.findInRange(FIND_DROPPED_ENERGY, 1);
             if (needs) {
@@ -72,6 +72,6 @@ var roleTaker = {
             }
 
         }
-        module.exports = roleTaker;
-
-        //doesnt do container
+    }
+}
+ module.exports = roleTaker;
