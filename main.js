@@ -10,7 +10,7 @@ var roleTower = require('role.tower');
 var respawn = require('respawn');
 
 module.exports.loop = function () {
-
+    roleTower.defend(tower);
     //if enemy creep - enable defenses
     var bDefense = false;
     var targets = Game.spawns["Spawn1"].room.find(FIND_HOSTILE_CREEPS)

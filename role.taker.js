@@ -30,10 +30,11 @@ var roleTaker = {
             else {
                 tower = creep.pos.findClosestByRange(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return ((structure.structureType == STRUCTURE_CONTAINER) 
-                        && structure.energy < structure.energyCapacity)
+                        return (structure.structureType == STRUCTURE_EXTENSION ||
+                  structure.structureType == STRUCTURE_CONTAINER ||
+                  structure.structureType == STRUCTURE_SPAWN) &&
+            energy < energyCapacity && mine;
                     }
-                });
                 console.log(tower)
                 if (tower) {
                     if (creep.transfer(tower, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
