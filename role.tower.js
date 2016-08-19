@@ -2,11 +2,9 @@ var roleTower = {
 
     /** @param {Creep} creep **/
     defend: function (tower) {
-        if (tower) {
-            var closestHostile = tower.room.find(FIND_HOSTILE_CREEPS);
-            if (closestHostile) {
-                tower.attack(closestHostile);
-            }
+        var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+        if (closestHostile) {
+            tower.attack(closestHostile[0]);
         }
     },
     rep: function (tower) {
