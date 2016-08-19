@@ -11,11 +11,13 @@ var roleTower = {
     },
     rep: function (tower) {
         if (tower) {
+
+
             var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
                 filter: (structure) => {
-                    return (((structure.structureType == STRUCTURE_RAMPARTS) ||
-                        (structure.structureType == STRUCTURE_WALLS) ||
-                         (structure.structureType == STRUCTURE_ROADS))
+                    return (((structure.structureType == STRUCTURE_RAMPART) ||
+                        (structure.structureType == STRUCTURE_WALL) ||
+                         (structure.structureType == STRUCTURE_ROAD))
                         && (structure.energy < 1000 && structure.energy < structure.energyCapacity))
                 }
 
@@ -26,16 +28,26 @@ var roleTower = {
                 console.log('1000' + closestDamagedStructure)
             }
             else {
-                var closestDamagedStructure = tower.room.find(FIND_STRUCTURES, {
-                    filter: (structure) => structure.hits < 5000
+                var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (((structure.structureType == STRUCTURE_RAMPART) ||
+                            (structure.structureType == STRUCTURE_WALL) ||
+                             (structure.structureType == STRUCTURE_ROAD))
+                            && (structure.energy < 5000 && structure.energy < structure.energyCapacity))
+                    }
                 });
                 if (closestDamagedStructure) {
                     tower.repair(closestDamagedStructure);
                     console.log('5000')
                 }
                 else {
-                    var closestDamagedStructure = tower.room.find(FIND_STRUCTURES, {
-                        filter: (structure) => structure.hits < 10000
+                    var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
+                        filter: (structure) => {
+                            return (((structure.structureType == STRUCTURE_RAMPART) ||
+                                (structure.structureType == STRUCTURE_WALL) ||
+                                 (structure.structureType == STRUCTURE_ROAD))
+                                && (structure.energy < 10000 && structure.energy < structure.energyCapacity))
+                        }
                     });
                     if (closestDamagedStructure) {
                         tower.repair(closestDamagedStructure);
@@ -43,8 +55,13 @@ var roleTower = {
                     }
 
                     else {
-                        var closestDamagedStructure = tower.room.find(FIND_STRUCTURES, {
-                            filter: (structure) => structure.hits < 500000
+                        var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
+                            filter: (structure) => {
+                                return (((structure.structureType == STRUCTURE_RAMPART) ||
+                                    (structure.structureType == STRUCTURE_WALL) ||
+                                     (structure.structureType == STRUCTURE_ROAD))
+                                    && (structure.energy < 500000 && structure.energy < structure.energyCapacity))
+                            }
                         });
                         if (closestDamagedStructure) {
                             tower.repair(closestDamagedStructure);
