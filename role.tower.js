@@ -12,7 +12,7 @@ var roleTower = {
     rep: function (tower) {
         if (tower) {
             var closestDamagedStructure = tower.room.find(FIND_STRUCTURES, {
-                filter: (structure) => (structure.hits < 1000) && (structure.type != STRUCTURE_CONTROLLER)
+                filter: (structure) => ((structure.hits < 1000) && structure.hits < structure.hitsMax)
             });
             if (closestDamagedStructure) {
                 tower.repair(closestDamagedStructure);
