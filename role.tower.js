@@ -15,11 +15,11 @@ var roleTower = {
 
             var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
                 filter: (structure) => {
-                    return (((structure.structureType == STRUCTURE_RAMPART) ||
-                        (structure.structureType == STRUCTURE_WALL) ||
-                         (structure.structureType == STRUCTURE_ROAD))
-                        && structure.energy < 1000 && structure.energy < structure.energyCapacity)
-                }
+                    return ((structure.structureType == STRUCTURE_RAMPART ||
+                        structure.structureType == STRUCTURE_WALL ||
+                         structure.structureType == STRUCTURE_ROAD)
+                        && structure.hits < 1000 && structure.hits < structure.hitsMax)
+                
             });
             if (closestDamagedStructure) {
                 tower.repair(closestDamagedStructure);
@@ -31,7 +31,7 @@ var roleTower = {
                         return (((structure.structureType == STRUCTURE_RAMPART) ||
                             (structure.structureType == STRUCTURE_WALL) ||
                              (structure.structureType == STRUCTURE_ROAD))
-                            && structure.energy < 5000 && structure.energy < structure.energyCapacity)
+                            && structure.hits < 5000 && structure.hits < structure.hitsMax)
                     }
                 });
                 if (closestDamagedStructure) {
@@ -44,7 +44,7 @@ var roleTower = {
                             return (((structure.structureType == STRUCTURE_RAMPART) ||
                                 (structure.structureType == STRUCTURE_WALL) ||
                                  (structure.structureType == STRUCTURE_ROAD))
-                                && structure.energy < 10000 && structure.energy < structure.energyCapacity)
+                                && structure.hits < 10000 && structure.hits < structure.hitsMax)
                         }
                     });
                     if (closestDamagedStructure) {
@@ -57,7 +57,7 @@ var roleTower = {
                                 return (((structure.structureType == STRUCTURE_RAMPART) ||
                                     (structure.structureType == STRUCTURE_WALL) ||
                                      (structure.structureType == STRUCTURE_ROAD))
-                                    && (structure.energy < 500000 && structure.energy < structure.energyCapacity))
+                                    && (structure.hits < 500000 && structure.hits < structure.hitsMax))
                             }
                         });
                         if (closestDamagedStructure) {
