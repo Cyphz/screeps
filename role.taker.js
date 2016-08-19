@@ -33,33 +33,20 @@ var roleTaker = {
 
                 tower = creep.pos.findClosestByRange(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return ((structure.structureType == STRUCTURE_CONTAINER
+                        return (((structure.structureType == STRUCTURE_CONTAINER) ||
+                        (structure.structureType == STRUCTURE_TOWER))
                         && structure.energy < structure.energyCapacity)
-                        )
                     }
                 });
 
-
+                console.log(tower)
                 if (tower) {
                     if (creep.transfer(tower, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(tower);
                     }
                 }
 
-                else {
-                    tower = creep.pos.findClosestByRange(FIND_STRUCTURES, {
-                        filter: (structure) => {
-                            return ((structure.structureType == STRUCTURE_TOWER
-                            && structure.energy < structure.energyCapacity)
-                            )
-                        }
-                    });
-                    if (tower > 0) {
-                        if (creep.transfer(tower, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                            creep.moveTo(tower);
-                        }
-                    }
-                }
+
             }
         }
         else {
@@ -82,3 +69,5 @@ var roleTaker = {
     }
 }
 module.exports = roleTaker;
+
+//doesnt do container

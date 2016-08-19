@@ -6,15 +6,18 @@ var roleFiller = {
         //set the source by id
         var sources = creep.room.find(FIND_SOURCES);
         if (creep.carry.energy != creep.carryCapacity) {
-            if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources);
+            if (sources) {
+                if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
+
+                    creep.moveTo(sources[0]);
+                }
             }
         }
         else {
             var container = creep.pos.findClosestByRange(FIND_STRUCTURES, {
                 filter: (structure) => {
                     return ((structure.structureType == STRUCTURE_STORAGE ||
-                            structure.structureType == STRUCTURE_CONTAINER) 
+                            structure.structureType == STRUCTURE_CONTAINER)
                         )
                 }
             });
@@ -25,7 +28,7 @@ var roleFiller = {
                 }
             }
         }
-        
+
     }
 }
 module.exports = roleFiller;
