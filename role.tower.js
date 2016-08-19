@@ -18,10 +18,8 @@ var roleTower = {
                     return (((structure.structureType == STRUCTURE_RAMPART) ||
                         (structure.structureType == STRUCTURE_WALL) ||
                          (structure.structureType == STRUCTURE_ROAD))
-                        && (structure.energy < 1000 && structure.energy < structure.energyCapacity))
+                        && structure.energy < 1000 && structure.energy < structure.energyCapacity)
                 }
-
-
             });
             if (closestDamagedStructure) {
                 tower.repair(closestDamagedStructure);
@@ -33,7 +31,7 @@ var roleTower = {
                         return (((structure.structureType == STRUCTURE_RAMPART) ||
                             (structure.structureType == STRUCTURE_WALL) ||
                              (structure.structureType == STRUCTURE_ROAD))
-                            && (structure.energy < 5000 && structure.energy < structure.energyCapacity))
+                            && structure.energy < 5000 && structure.energy < structure.energyCapacity)
                     }
                 });
                 if (closestDamagedStructure) {
@@ -46,14 +44,13 @@ var roleTower = {
                             return (((structure.structureType == STRUCTURE_RAMPART) ||
                                 (structure.structureType == STRUCTURE_WALL) ||
                                  (structure.structureType == STRUCTURE_ROAD))
-                                && (structure.energy < 10000 && structure.energy < structure.energyCapacity))
+                                && structure.energy < 10000 && structure.energy < structure.energyCapacity)
                         }
                     });
                     if (closestDamagedStructure) {
                         tower.repair(closestDamagedStructure);
                         console.log('10000')
                     }
-
                     else {
                         var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
                             filter: (structure) => {
